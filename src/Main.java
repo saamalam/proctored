@@ -14,7 +14,15 @@ public class Main {
 //        System.out.println("is Array Centred: " + isCenter15());
 
 //        System.out.println("is Gurthrei Array: " + gurSequence());
-        System.out.println("is Common Value Array: " + Arrays.toString(isCommonArray()));
+//        System.out.println("is Common Value Array: " + Arrays.toString(isCommonArray()));
+
+        //Point of Equilibrium
+        System.out.println("POE for {1, 8, 3, 7, 10, 2} is: "+ poe(new int[]{1, 8, 3, 7, 10, 2}));
+        System.out.println("POE for {1, 5, 3, 1, 1, 1, 1, 1, 1} is: "+ poe(new int[]{1, 5, 3, 1, 1, 1, 1, 1, 1}));
+        System.out.println("POE for {2, 1, 1, 1, 2, 1, 7} is: "+ poe(new int[]{2, 1, 1, 1, 2, 1, 7}));
+        System.out.println("POE for {1, 2, 3} is: "+ poe(new int[]{1, 2, 3}));
+        System.out.println("POE for {3, 4, 5, 10} is: "+ poe(new int[]{3, 4, 5, 10}));
+        System.out.println("POE for {1, 2, 10, 3, 4} is: "+ poe(new int[]{1, 2, 10, 3, 4}));
 
         }
 
@@ -292,6 +300,22 @@ public class Main {
     }
 
     //POE (point of equilibrium) from positive integer
+
+    static int poe(int[] a){
+
+       // int[] a = {1, 8, 3, 2, 6, 0};
+
+        int left = 0, right, i, j, pos = -1;
+        for(i = 1; i < a.length - 1; i++) {
+            left = left + a[i - 1];
+            right = 0;
+            for(j = i + 1; j < a.length; j++) {
+                right += a[j];
+            }
+            if(left == right) pos = i;
+        }
+        return pos;
+    }
 
 
     }
