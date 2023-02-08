@@ -17,12 +17,21 @@ public class Main {
 //        System.out.println("is Common Value Array: " + Arrays.toString(isCommonArray()));
 
         //Point of Equilibrium
-        System.out.println("POE for {1, 8, 3, 7, 10, 2} is: "+ poe(new int[]{1, 8, 3, 7, 10, 2}));
-        System.out.println("POE for {1, 5, 3, 1, 1, 1, 1, 1, 1} is: "+ poe(new int[]{1, 5, 3, 1, 1, 1, 1, 1, 1}));
-        System.out.println("POE for {2, 1, 1, 1, 2, 1, 7} is: "+ poe(new int[]{2, 1, 1, 1, 2, 1, 7}));
-        System.out.println("POE for {1, 2, 3} is: "+ poe(new int[]{1, 2, 3}));
-        System.out.println("POE for {3, 4, 5, 10} is: "+ poe(new int[]{3, 4, 5, 10}));
-        System.out.println("POE for {1, 2, 10, 3, 4} is: "+ poe(new int[]{1, 2, 10, 3, 4}));
+//        System.out.println("POE for {1, 8, 3, 7, 10, 2} is: "+ poe(new int[]{1, 8, 3, 7, 10, 2}));
+//        System.out.println("POE for {1, 5, 3, 1, 1, 1, 1, 1, 1} is: "+ poe(new int[]{1, 5, 3, 1, 1, 1, 1, 1, 1}));
+//        System.out.println("POE for {2, 1, 1, 1, 2, 1, 7} is: "+ poe(new int[]{2, 1, 1, 1, 2, 1, 7}));
+//        System.out.println("POE for {1, 2, 3} is: "+ poe(new int[]{1, 2, 3}));
+//        System.out.println("POE for {3, 4, 5, 10} is: "+ poe(new int[]{3, 4, 5, 10}));
+//        System.out.println("POE for {1, 2, 10, 3, 4} is: "+ poe(new int[]{1, 2, 10, 3, 4}));
+
+        //porcupine number
+//        System.out.println("Next Porcupine Number: " + porcupine(51));
+        System.out.println("is Porcupine Number: " + fp(51));
+        System.out.println("is Porcupine Number: " + fp(4));
+//        testmodel();
+
+        //porcupine1();
+
 
         }
 
@@ -50,7 +59,7 @@ public class Main {
             // get last digit from num
             int digit = num % 10;
             reversed = reversed * 10 + digit;
-            System.out.println("revesed: " + reversed + "digit: " + digit + "num: " + (num /= 10));
+            //System.out.println("revesed: " + reversed + "digit: " + digit + "num: " + (num /= 10));
 
             // remove the last digit from num
             num /= 10;
@@ -306,6 +315,7 @@ public class Main {
        // int[] a = {1, 8, 3, 2, 6, 0};
 
         int left = 0, right, i, j, pos = -1;
+        if(a.length<3) return -1;
         for(i = 1; i < a.length - 1; i++) {
             left = left + a[i - 1];
             right = 0;
@@ -316,6 +326,105 @@ public class Main {
         }
         return pos;
     }
+
+    //if prime number
+
+    static boolean isPrime(int n) {
+        if (n<=1) {
+            return false;
+        }
+        boolean thePrime = true;
+        for (int i = 2; i < n; i++) {
+            if (n % i == 0) {
+                thePrime = false;
+                break;
+            }
+        }
+        return thePrime;
+    }
+
+    //porcupine number
+
+    static String porcupine(int k){
+
+        //initialized with the next value
+        int n = 50;
+        n++;
+        boolean isPorcupine = false;
+        String num = "Num: ";
+        int max = 2000;
+
+            if(isPrime(n)) {
+                while (n < max && n % 10 == 9) {
+                    for (int j = n; j < max; j++) {
+
+                        if (isPrime(j) && j % 10 != 9) {
+                            num += j;
+                            isPorcupine = false;
+                            break;
+                        } else {
+                            num += j;
+                            isPorcupine = true;
+                            break;
+                        }
+
+                    }
+                    n++;
+                }
+            }
+
+
+        return num;
+
+    }
+
+    static int isPorcupineNumber(int n) {
+        int max = 5000;
+        int i = n;
+        boolean porcupineFound = false;
+        int porcupineNumber = 0;
+
+        while (i<max) {
+            if (isPrime(i)) {
+                for (int j = i; j < max; j++) {
+                    if (isPrime(j)) {
+                        if (j%10 != 9) {
+                            break;
+                        }
+                        porcupineFound = true;
+                        porcupineNumber = j;
+                    }
+                }
+                i++;
+            }
+            if (porcupineFound) {
+                return porcupineNumber;
+            }
+        }
+        return porcupineNumber;
+
+    }
+
+    public static int fp(int n) {
+        int i, flag, porcupine = 0;
+
+        if(n % 2 == 0) n += 1;
+        else n += 2;
+
+        for( ; ;n += 2 ) {
+            flag = 1;
+            for(i = 3; i < n; i += 2) {
+                if(n % i == 0) {
+                    flag = 0;
+                    break;
+                }
+            }
+            if(flag == 1 && porcupine % 10 == 9 && n % 10 == 9) break;
+            else if(flag == 1) porcupine = n;
+        }
+        return porcupine;
+    }
+
 
 
     }
