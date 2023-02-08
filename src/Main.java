@@ -2,7 +2,7 @@ import java.util.Arrays;
 public class Main {
     public static void main(String[] args) {
 //        System.out.println("Reversed: " + reverse(12345));
-//        System.out.println("Perfect Square: " + isSquare(3));
+//        System.out.println("Perfect Square: " + isSquare(49));
 //        System.out.println("is Array Sum as Sub: " + isSub();
 //        System.out.println("is Sub Character: " + isSubChar("mynameiskhan", "sam"));
 
@@ -26,11 +26,14 @@ public class Main {
 
         //porcupine number
 //        System.out.println("Next Porcupine Number: " + porcupine(51));
-        System.out.println("is Porcupine Number: " + fp(51));
-        System.out.println("is Porcupine Number: " + fp(4));
+//        System.out.println("is Porcupine Number: " + fp(51));
+//        System.out.println("is Porcupine Number: " + fp(8));
 //        testmodel();
 
         //porcupine1();
+
+        System.out.println("is Square Pairs: " + isSquarePairs(new int[]{9,0,2,-5,7}));
+
 
 
         }
@@ -204,7 +207,6 @@ public class Main {
 
         //isSquare value given to the below
         static  int isSquare(int sq){
-
         int isSq=0;
         for (int i=0; i<=sq; i++){
             if(i*i==sq){
@@ -425,6 +427,29 @@ public class Main {
         return porcupine;
     }
 
+    static int isSquarePairs(int[] num){
 
+        //int[] num = {11,5,4,20};
+        int pairs=0, i=0, j, k, sum=0;
+
+        while(i < num.length){
+                for(j=0; j<num.length; j++){
+                    sum=num[i]+num[j];
+                   if(num[i] < num[j] && num[j] != num[i] && num[i] > 0 && num[j] > 0){
+                       for(k=0; k < sum/2; k++){
+                           if(k * k == sum){
+                               pairs++;
+                               break;
+                           }
+
+                       }
+                   }
+            }
+
+            i++;
+
+        }
+        return  pairs;
+    }
 
     }
