@@ -32,7 +32,9 @@ public class Main {
 
         //porcupine1();
 
-        System.out.println("is Square Pairs: " + isSquarePairs(new int[]{9,0,2,-5,7}));
+        //System.out.println("is Square Pairs: " + isSquarePairs(new int[]{9,0,2,-5,7}));
+//        System.out.println("is Bean Array: " + isBean(new int[]{2, 2, 3, 3, 3}));
+        System.out.println("isMadhavArray Array: " + isMadhavArray(new int[]{6,2,4,2,2,2,1,5,0,0}));
 
 
 
@@ -450,6 +452,71 @@ public class Main {
 
         }
         return  pairs;
+    }
+
+// isBean Array
+    static int isBean(int[] a) {
+        int len = a.length;
+        boolean isBeanArray;
+
+        for (int i = 0; i < len; i++) {
+            int num = a[i];
+            isBeanArray = false;
+            for (int j = 0; j < len; j++) {
+                if (a[j] == num + 1 || a[j] == num - 1) {
+                    isBeanArray = true;
+                    break;
+                }
+            }
+            if (!isBeanArray) {
+                return 0;
+            }
+
+        }
+
+        return 1;
+    }
+
+    //isCorrect Array Format
+
+    static int isCorrectArray(int n[]){
+
+        int i = 2;
+        int len = n.length;
+        boolean isCorrectFormat = false;
+        while(i*(i+1) <= 2*len){
+            if(i*(i+1) == 2*len){
+                isCorrectFormat = true;
+                break;
+            } else {
+                i++;
+            }
+        }
+        if(!isCorrectFormat) return 0;
+        return 1;
+
+    }
+
+    //isMadhav Array
+
+    static int isMadhavArray(int[] a){
+        int toBeComparedValue = a[0];
+        if (isCorrectArray(a) != 0) {
+            int num = 2;
+            for (int i = 1; i < a.length; ) {
+                int sum = 0;
+                for (int j = i; j < i + num; j++) {
+                    sum += a[j];
+                }
+                if (sum != toBeComparedValue) {
+                    return 0;
+                }
+                i += num++;
+            }
+            return 1;
+        }
+        return 0;
+
     }
 
     }
