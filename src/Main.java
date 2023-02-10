@@ -34,7 +34,12 @@ public class Main {
 
         //System.out.println("is Square Pairs: " + isSquarePairs(new int[]{9,0,2,-5,7}));
 //        System.out.println("is Bean Array: " + isBean(new int[]{2, 2, 3, 3, 3}));
-        System.out.println("isMadhavArray Array: " + isMadhavArray(new int[]{6,2,4,2,2,2,1,5,0,0}));
+//        System.out.println("isMadhavArray Array: " + isMadhavArray(new int[]{6,2,4,2,2,2,1,5,0,0}));
+//        System.out.println("isMadhav Array: " + isMadhav(new int[]{6,2,4,2,2,2,1,5,0,0}));
+//        System.out.println("sumEvenOdd Array: " + sumEvenOdd(new int[]{1, 2, 3, 4}));
+        System.out.println("nCountUp counts Array: " + nUpCount(new int[]{2,3,1,-6,8,-3,-1,2}, 5));
+
+
 
 
 
@@ -321,7 +326,7 @@ public class Main {
         int left = 0, right, i, j, pos = -1;
         if(a.length<3) return -1;
         for(i = 1; i < a.length - 1; i++) {
-            left = left + a[i - 1];
+            left = left + a[i-1];
             right = 0;
             for(j = i + 1; j < a.length; j++) {
                 right += a[j];
@@ -518,5 +523,67 @@ public class Main {
         return 0;
 
     }
+
+    static int isMadhav(int[] a){
+
+        int sum = 0;
+        int flag = 0;
+        int len = a.length;
+        int i = 0;
+        while(i < (len -1)) {
+            sum = a[++i] + a[++i];
+//            System.out.println("i: " + i);
+            if (i > 3) {
+                for (int k = 3; k < i; k++) {
+                    System.out.println("i i: " + i);
+                    sum += a[++i];
+                }
+            }
+//            System.out.println(sum);
+            if (sum != a[0]) {
+                flag++;
+                break;
+            }
+        }
+        if (flag == 0) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    static int sumEvenOdd(int[] a){
+
+        int sumEven = 0, sumOdd = 0;
+
+        for(int i = 0; i <a.length; i++){
+            if(a[i]%2==0){
+                sumEven += a[i];
+            } else {
+                sumOdd += a[i];
+
+            }
+        }
+        return sumOdd-sumEven;
+
+    }
+
+    static int nUpCount(int[] a, int n){
+        int sum = 0, previousSum = 0, nUpCount = 0;
+
+        for(int i = 0; i < a.length; i++){
+            previousSum = sum;
+            sum += a[i];
+
+            if(previousSum <=5 && sum > n){
+                nUpCount++;
+            }
+        }
+
+        return  nUpCount;
+
+
+    }
+
 
     }
