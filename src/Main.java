@@ -37,11 +37,54 @@ public class Main {
 //        System.out.println("isMadhavArray Array: " + isMadhavArray(new int[]{6,2,4,2,2,2,1,5,0,0}));
 //        System.out.println("isMadhav Array: " + isMadhav(new int[]{6,2,4,2,2,2,1,5,0,0}));
 //        System.out.println("sumEvenOdd Array: " + sumEvenOdd(new int[]{1, 2, 3, 4}));
-        System.out.println("nCountUp counts Array: " + nUpCount(new int[]{2,3,1,-6,8,-3,-1,2}, 5));
+//        System.out.println("nCountUp counts Array: " + nUpCount(new int[]{2,3,1,-6,8,-3,-1,2}, 5));
+//        System.out.println("is Strictly Ascending Int: " + isAscending(1578));
+//        System.out.println("Reverse Array: " + Arrays.toString(reverseArray(new int[]{6,2,4,2,2,2,1,5,0,0})));
+//        System.out.println("Min Max Array: " + Arrays.toString(minMaxArray(new int[]{6,2,4,2,2,2,25,5,0,0})));//
+
+        System.out.println("Character Occurences: " + charOccur("samiralam", "m"));
 
 
+        }
 
+        static int charOccur(String str, String occ){
 
+        int count = 0;
+
+        for(int i = 0; i<str.length(); i++){
+
+            if(str.charAt(i) == occ.charAt(0)){
+                count++;
+            }
+
+        }
+
+        return count;
+        }
+
+        static int[] minMaxArray(int[] n){
+        int prevalMin=0, prevalMax=0;
+        int[] c = new int[2];
+        for(int i=0; i<n.length; i++) {
+            if (n[i] > prevalMax) {
+                prevalMax = n[i];
+            } else {
+                prevalMin = n[i];
+            }
+            c[0] = prevalMin;
+            c[1] = prevalMax;
+        }
+        return c;
+
+        }
+
+        static int[] reverseArray(int[] n){
+        int[] c = new int[n.length];
+
+        for(int i=n.length-1, j=0; i>=0; i--, j++){
+            c[j]=n[i];
+        }
+           return c;
 
         }
 
@@ -51,7 +94,7 @@ public class Main {
         String str = "MyNameIsKhan";
         String reverse = "";
         for (int i = str.length() - 1; i >= 0; i--) {
-            System.out.println(str.charAt(i));
+            //System.out.println(str.charAt(i));
             reverse += str.charAt(i);
         }
         return reverse;
@@ -60,10 +103,8 @@ public class Main {
 
     //reverseInteger without array
     static int reverseInt(){
-
         int num = 123456789;
         int reversed = 0;
-
         // run loop until num becomes 0
         while (num != 0) {
             // get last digit from num
@@ -581,6 +622,32 @@ public class Main {
         }
 
         return  nUpCount;
+
+
+    }
+
+    static int isAscending(int n){
+        int rem, rem1, pval = 0; boolean isAsc = true;
+
+        while(n != 0){
+            rem = n % 10;
+            n /= 10;
+            rem1 = n % 10;
+            n /= 10;
+            if(rem > rem1){
+                continue;
+            } else {
+                isAsc = false;
+                break;
+            }
+        }
+
+        if(isAsc == true){
+            return 1;
+        } else {
+            return 0;
+        }
+
 
 
     }
