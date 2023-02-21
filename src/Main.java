@@ -42,8 +42,20 @@ public class Main {
 //        System.out.println("Reverse Array: " + Arrays.toString(reverseArray(new int[]{6,2,4,2,2,2,1,5,0,0})));
 //        System.out.println("Min Max Array: " + Arrays.toString(minMaxArray(new int[]{6,2,4,2,2,2,25,5,0,0})));//
 
-        System.out.println("Character Occurences: " + charOccur("samiralam", "m"));
+//        System.out.println("Character Occurences: " + charOccur("samiralam", "m"));
+        System.out.println("Power value without Math pow(): " + powVal(2, 4));
 
+
+        }
+
+        static int powVal(int base, int power){
+        int sum = 1;
+        while(power!=0){
+            sum = sum*base;
+            power--;
+        }
+
+        return sum;
 
         }
 
@@ -52,7 +64,6 @@ public class Main {
         int count = 0;
 
         for(int i = 0; i<str.length(); i++){
-
             if(str.charAt(i) == occ.charAt(0)){
                 count++;
             }
